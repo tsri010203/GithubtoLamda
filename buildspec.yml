@@ -4,17 +4,17 @@ phases:
     runtime-versions:
       python: 3.8
     commands:
-      - echo "Installing dependencies"
+      - echo "Installing dependencies..."
       - pip install -r requirement.txt -t lib
   build:
     commands:
-      - echo "zipping deployment package"
+      - echo "zipping deployment package..."
       - cd lib
       - zip -r9 ../deployment_package.zip .
       - cd ..
       - zip -g deployment_package.zip lamda_function.py.py
   post_build:
     commands:
-      - echo "updating lamda Function"
-      - aws lambda update-function-code --function-name GithubtoLamdagit a --zip-file fileb://deployment_pack
-      - echo "Done"
+      - echo "updating lambda Function"
+      - aws lambda update-function-code --function-name GithubtoLamda --zip-file fileb://deployment_package.zip
+      - echo "Done!!"
